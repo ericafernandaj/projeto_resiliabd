@@ -48,6 +48,7 @@ CREATE TABLE Modulos (
     id_modulo INT AUTO_INCREMENT PRIMARY KEY, -- Identificador único para cada módulo
     numero_modulo CHAR(2), -- Número sequencial do módulo
     nome_modulo VARCHAR(50), -- Nome do módulo
+    qtd_aulas INT, -- Quantidade de aulas que um determinado modulo possui
     id_facilitadores INT, -- Referência ao facilitador responsável pelo módulo
     id_estudante INT, -- Referência ao estudante que cursou o módulo
     FOREIGN KEY (id_facilitadores) REFERENCES Facilitadores(id_facilitadores), -- Relacionamento com a tabela de facilitadores
@@ -92,8 +93,10 @@ CREATE TABLE Atividades (
     avaliacao_soft char(1), -- Indicação se a avaliação soft foi feita (S para sim, N para não)
     data_inicio DATE, -- Data de início da atividade
     data_entrega DATE, -- Data de entrega da atividade
+    id_modulo INT, -- Referência ao id do módulo que que aquela atividade foi definida
     id_turma INT, -- Referência à turma relacionada à atividade
     id_estudante INT, -- Referência ao estudante que realizou a atividade
+    FOREIGN KEY (id_modulo) REFERENCES Modulos(id_modulo),
     FOREIGN KEY (id_turma) REFERENCES Turmas(id_turma), -- Relacionamento com a tabela de turmas
     FOREIGN KEY (id_estudante) REFERENCES Estudantes(id_estudante) -- Relacionamento com a tabela de estudantes
 );
