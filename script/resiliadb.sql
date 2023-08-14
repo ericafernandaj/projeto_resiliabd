@@ -27,13 +27,13 @@ CREATE TABLE Cursos (
     nome VARCHAR(50) NOT NULL, -- Nome do curso
     turno CHAR(1), -- Turno do curso (T para tarde, M para manhã, N para noite)
     modalidade CHAR(1), -- Modalidade do curso (P para presencial, R para remoto, H para híbrido)
-    empresa_parceira VARCHAR(50) -- Nome da empresa parceira associada ao curso (caso haja)
 );
 
 -- Tabela Turmas
 CREATE TABLE Turmas (
     id_turma INT AUTO_INCREMENT PRIMARY KEY, -- Identificador único para cada turma
     codigo_turma VARCHAR(10) UNIQUE, -- Código de identificação da turma (deve ser único)
+    empresa_parceira VARCHAR(50) -- Nome da empresa parceira responsavel pela turma (caso haja)
     id_facilitadores INT, -- Referência ao facilitador da turma
     id_estudante INT, -- Referência ao estudante que pertence à turma
     id_curso INT, -- Referência ao curso ao qual a turma pertence
@@ -49,6 +49,7 @@ CREATE TABLE Modulos (
     numero_modulo CHAR(2), -- Número sequencial do módulo
     nome_modulo VARCHAR(50), -- Nome do módulo
     qtd_aulas INT, -- Quantidade de aulas que um determinado modulo possui
+    data_limite DATE, -- Data limite para a finalização do módulo
     id_facilitadores INT, -- Referência ao facilitador responsável pelo módulo
     id_estudante INT, -- Referência ao estudante que cursou o módulo
     FOREIGN KEY (id_facilitadores) REFERENCES Facilitadores(id_facilitadores), -- Relacionamento com a tabela de facilitadores
@@ -108,8 +109,10 @@ CREATE TABLE Presencas (
     status_presenca char(1), -- Indicação de presença na aula (S para sim, N para não)
     horario_entrada DATETIME, -- Horário de entrada do estudante na aula
     horario_saida DATETIME, -- Horário de saída do estudante da aula
+    justificativa varchar(50), -- Justificativa caso o aluno falte
     id_estudante INT, -- Referência ao estudante relacionado ao registro de presença
     id_turma INT, -- Referência à turma relacionada ao registro de presença
     FOREIGN KEY (id_estudante) REFERENCES Estudantes(id_estudante), -- Relacionamento com a tabela de estudantes
     FOREIGN KEY (id_turma) REFERENCES Turmas(id_turma) -- Relacionamento com a tabela de turmas
 );
+
