@@ -31,7 +31,15 @@ Benefícios do Projeto
 - Facilidade de consulta das informações, permitindo uma visão completa e atualizada da estrutura de ensino da empresa.
 - Maior agilidade no gerenciamento das turmas, facilitando o acompanhamento dos estudantes em diferentes cursos e módulos.
 - Melhoria na comunicação e registro de presenças, garantindo um controle mais preciso do comparecimento dos estudantes às aulas.
+  
+Apresentação
+
+No link asseguir, deixamos a apresentação do nosso projeto em grupo que foi apresentado no ultimo dia 17/08
+
+link apresentação:
+https://prezi.com/view/w6QNoUDi1BRp9RwRe6po/
 
 Conclusão
 
 Este projeto tem como objetivo modernizar o processo de gerenciamento da estrutura de ensino de uma empresa através do uso de um banco de dados. Com as tabelas disponíveis no "resiliadb", é possível armazenar e consultar informações relevantes de forma simples e eficiente. O projeto traz diversos benefícios, como agilidade, organização e controle das informações, auxiliando na tomada de decisões e no acompanhamento dos estudantes ao longo do seu percurso educacional.
+
