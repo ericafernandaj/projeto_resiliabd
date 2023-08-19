@@ -1,0 +1,25 @@
+-- Seleciona os estudantes que atrasaram a entrega de alguma atividade, juntamente com os dados de contato deles
+-- Usa as tabelas: Estudantes, Telefone, Endereco, Atividades e Modulos
+CREATE VIEW EstudantesEntregaAtrasada AS
+SELECT 
+    E.id_estudante,
+    E.nome_estudante,
+    E.email,
+    T.codigo_pais,
+    T.DDD,
+    T.numero AS numero_telefone,
+    End.rua,
+    End.pais,
+    End.estado,
+    End.cidade,
+    End.bairro,
+    End.numero AS numero_endereco,
+    End.complemento,
+    A.id_atividade,
+    A.data_entrega
+FROM Estudantes E
+JOIN Telefone T ON E.id_estudante = T.id_estudante
+JOIN Endereco End ON E.id_estudante = End.id_estudante
+JOIN Atividades A ON E.id_estudante = A.id_estudante
+JOIN Modulos M ON A.id_modulo = M.id_modulo
+WHERE A.data_entrega > M.data_limite;

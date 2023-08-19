@@ -1,0 +1,14 @@
+ -- Mostra os facilitadores que atuam em mais de uma turma
+ CREATE VIEW FacilitadoresVariasTurmas AS
+SELECT 
+    f.id_facilitador,
+    f.nome AS nome_facilitador,
+    COUNT(ft.id_turma) AS numero_turmas
+FROM 
+    Facilitadores f
+JOIN 
+    FacilitadoresTurmas ft ON f.id_facilitador = ft.id_facilitador
+GROUP BY 
+    f.id_facilitador, f.nome
+HAVING 
+    COUNT(ft.id_turma) > 1;

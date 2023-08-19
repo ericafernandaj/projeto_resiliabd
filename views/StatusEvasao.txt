@@ -1,0 +1,39 @@
+CREATE VIEW StatusEvasao AS
+SELECT 
+    t.id_turma,
+    t.nome_turma,
+    COUNT(e.id_estudante) AS total_estudantes,
+    SUM(
+        CASE 
+            WHEN (
+                -- Checar se o estudante não realizou alguma das atividades.
+                a.projeto_individual = 'N' OR 
+                a.projeto_grupo = 'N' OR 
+                a.avaliacao_soft = 'N' OR 
+                a.lista_exercicios_portal = 'N' OR 
+                
+                -- Checar se o estudante faltou mais de 3 aulas sem justificativa.
+                (SELECT COUNT(p.id_presenca) FROM Presencas p WHERE p.status_presenca = 'N' AND p.justificativa IS NULL AND p.id_estudante = e.id_estudante) > 3
+            ) THEN 1 ELSE 0 END
+    ) AS total_reprovados,
+    -- Calcular a porcentagem de estudantes reprovados.
+    ROUND(
+        (SUM(
+            CASE 
+                WHEN (
+                    a.projeto_individual = 'N' OR 
+                    a.projeto_grupo = 'N' OR 
+                    a.avaliacao_soft = 'N' OR 
+                    a.lista_exercicios_portal = 'N' OR 
+                    (SELECT COUNT(p.id_presenca) FROM Presencas p WHERE p.status_presenca = 'N' AND p.justificativa IS NULL AND p.id_estudante = e.id_estudante) > 3
+                ) THEN 1 ELSE 0 END
+        ) / COUNT(e.id_estudante)) * 100, 2
+    ) AS percentual_evasao
+FROM 
+    Turmas t
+JOIN 
+    Estudantes e ON t.id_turma = e.id_turma
+LEFT JOIN 
+    Atividades a ON e.id_estudante = a.id_estudante
+GROUP BY 
+    t.id_turma, t.nome_turma;

@@ -1,0 +1,6 @@
+-- Mostra o total de estudantes no banco
+CREATE VIEW TotalEstudantes AS
+SELECT 
+    COUNT(nome_estudante) AS Total_Estudantes
+FROM
+    estudantes;

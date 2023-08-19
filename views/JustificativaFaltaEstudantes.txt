@@ -1,0 +1,10 @@
+-- Listar estudantes que faltaram as aulas e deram justificativa
+CREATE VIEW JustificativaFaltaEstudantes AS
+SELECT 
+    e.id_estudante,
+    e.nome_estudante,
+    p.data_aula,
+    p.justificativa
+FROM Estudantes e
+JOIN Presencas p ON e.id_estudante = p.id_estudante
+WHERE p.status_presenca = 'N' AND (p.justificativa IS NOT NULL OR TRIM(p.justificativa) != '');

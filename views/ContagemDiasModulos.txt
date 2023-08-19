@@ -1,0 +1,6 @@
+-- Mostra quantos dias o módulo durou (ou vai durar) aproximadamente e o total de aulas que foram ministradas (contando 5 aulas por semana)
+CREATE VIEW ContagemDiasModulos AS
+SELECT id_modulo, nome_modulo, data_inicio, data_limite,
+       (DATEDIFF(data_limite, data_inicio) + 1) AS total_dias,
+       ((DATEDIFF(data_limite, data_inicio) + 1) - (DATEDIFF(data_limite, data_inicio) DIV 7) * 2) AS total_aulas
+FROM Modulos;
