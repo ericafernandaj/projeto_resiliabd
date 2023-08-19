@@ -142,3 +142,49 @@ CREATE TABLE Presencas (
     FOREIGN KEY (id_modulo) REFERENCES Modulos(id_modulo),
     FOREIGN KEY (id_estudante) REFERENCES Estudantes(id_estudante) -- Relacionamento com a tabela de estudantes
 );
+
+
+-- Cardinalidades: 
+
+-- Cursos -> Turmas: 1:N 
+-- A cada curso podem estar associadas várias turmas, mas cada turma está associada a apenas um curso.
+
+-- Turmas -> Modulos: 1:N 
+-- A cada turma podem estar associados vários módulos, mas cada módulo pertence a apenas uma turma.
+
+-- Turmas -> FacilitadoresTurmas: 1:N
+-- Uma turma pode ter várias relações com diferentes facilitadores, mas cada relação na tabela FacilitadoresTurmas refere-se a apenas uma turma.
+
+-- Facilitadores -> FacilitadoresTurmas: 1:N 
+-- Um facilitador pode estar associado a várias turmas através da tabela de relação, mas cada entrada nessa tabela de relação refere-se a apenas um facilitador.
+
+-- Turmas -> Estudantes: 1:N 
+-- Cada turma pode ter vários estudantes, mas um estudante pertence a apenas uma turma.
+
+-- Modulos -> Estudantes: 1:N 
+-- Um módulo pode ter vários estudantes nele, mas cada estudante está em apenas um módulo por vez.
+
+-- Estudantes -> Endereco: 1:1 
+-- Cada estudante tem apenas um endereço.
+
+-- Facilitadores -> Endereco: 1:1 
+-- Cada facilitador tem apenas um endereço.
+
+-- Estudantes -> Telefone: 1:N 
+-- Cada estudante pode ter mais de um telefones.
+
+-- Facilitadores -> Telefone: 1:N
+-- Cada facilitador pode ter mais de um telefones.
+
+-- Modulos -> Atividades: 1:N 
+-- Um módulo pode ter várias atividades, mas cada atividade pertence a apenas um módulo.
+
+-- Estudantes -> Atividades: 1:N 
+-- Um estudante pode ter várias atividades, mas cada atividade pertence a apenas um estudante.
+
+-- Modulos -> Presencas: 1:N 
+-- Um módulo pode ter vários registros de presença, mas cada registro de presença está relacionado a apenas um módulo.
+
+-- Estudantes -> Presencas: 1:N 
+-- Um estudante pode ter vários registros de presença, mas cada registro de presença está relacionado a apenas um estudante.
+
